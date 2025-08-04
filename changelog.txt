@@ -1,0 +1,23 @@
+__________________
+UPDATE 250701:
+--------------
+>Added light source entity.
+>Added Shader Specific modules.
+--------------
+[Comment]: CURSE YOU BAYLE. I HEARBY VOW
+YOU WILL RUE THIS DAY. BEHOLD A TRUE DRAKE WARRIOR AND I, IGON. YOUR FEARS MADE FLESH.
+SOLID OF SCALES YOU MIGHT BE FOUL DRAGON, BUT I WILL RIDDLE WITH HOLES YOUR ROTTEN
+HYDE... WITH A HAIL OF HARPOONS. WITH EVERY LAST DROP OF MY BEING...
+__________________
+UPDATE 250722:
+--------------
+>PBR fully works, save for hiccups relating to normal mapping.
+--------------
+[Comment]: YAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRGGGGGGGGGGGGGGGGGGG.
+BAYLE THE DREAD.  YOU SHALL HAUNT ME.... NO LONGER.
+__________________
+UPDATE 250723:
+--------------
+>PBR fully works. Finally.
+--------------
+[Comment]: SWEET LIBERTY MY RAM!!!!
