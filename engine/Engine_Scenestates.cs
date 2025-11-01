@@ -6,6 +6,7 @@ using static Raylib_cs.Raylib;
 using System.Drawing;
 using Game_Objects;
 using Engine_Logics;
+using Engine_Logics.Sub.PlayerCon;
 using Engine_Resource;
 using Raylib_cs;
 
@@ -55,7 +56,7 @@ namespace Engine_Scenestates
                     //brsh.Add(new GameObjects.Brush() { brushScale = new Vector3(5, 5, 5), brushPos = new Vector3(0.0f, 14.0f, 10.0f) });
                     //prop.Add(new GameObjects.Props(modl[1].mdl, 0x000001, Prop_types.Prop_Static, "FwwvCube", false, 0x000000, new Vector3(0.0f, -0.1f, 20.0f), Vector3.Zero, 1.0f));
                     prop.Add(new GameObjects.Props(modl[2].mdl, 0x000002, Prop_types.Prop_Static, "gag", false, 0x000000, new Vector3(0.0f, -1f, 10.0f), Vector3.Zero, 1.0f));
-                    Game.SetGameDefault(new Vector3(0.0f, 0.0f, 0.0f));
+                    ControlCorrespondant.SetGameDefault(new Vector3(0.0f, 0.0f, 0.0f));
                     Console.WriteLine("DONE______________________________________________________________!\n");
                     //Idfk how im gonna keep this from crashing when it doesn't detect index so for now just ensure there are atleast 2 brushes.
                 }
