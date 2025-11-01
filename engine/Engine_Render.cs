@@ -6,6 +6,7 @@ using static Raylib_cs.Raylib;
 using System.Drawing;
 using Game_Objects;
 using Engine_Logics;
+using Engine_Logics.Sub.PlayerCon;
 using Engine_Scenestates;
 using Raylib_cs;
 using Engine_Resource;
@@ -43,7 +44,7 @@ namespace Engine_Render
                 Lighting.UpdateLight(Shadercl.Mat_PBR, Scenestate.ligt[0]);
                 Lighting.UpdateLight(Shadercl.Mat_PBR, Scenestate.ligt[1]);
                 //Console.WriteLine(Scenestate.ligt[0].Position);
-                BeginMode3D(Game.camfps);
+                BeginMode3D(ControlCorrespondant.camfps);
                 RenderBrush();
                 //DrawCube(Scenestate.ligt[0].Position, 1, 1, 1, Raylib_cs.Color.White);
                 //DrawGrid(20, 1.0f);
@@ -62,7 +63,7 @@ namespace Engine_Render
 
         public static void Rend_Unified()
         {
-            UpdateCamera(ref Game.camfps, Raylib_cs.CameraMode.Custom);
+            UpdateCamera(ref ControlCorrespondant.camfps, Raylib_cs.CameraMode.Custom);
             BeginDrawing();
             BeginBlendMode(BlendMode.Alpha);//TODO: figure out why the hell transparency keeps clipping everything behind it.
             ClearBackground(Raylib_cs.Color.White);

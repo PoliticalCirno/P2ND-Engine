@@ -80,8 +80,8 @@ namespace Engine_Resource
 
         public static unsafe void ShaderUpdateRuntimePrePBR()
         {
-            //I forgot what this does
-            var Shd_campos = Engine_Logics.Game.camfps.Position;
+            //I forgot what this does // I forgot too ngl
+            var Shd_campos = Engine_Logics.Sub.PlayerCon.ControlCorrespondant.camfps.Position;
             SetShaderValue(Mat_PBR, Mat_PBR.Locs[(int)ShaderLocationIndex.VectorView], Shd_campos, ShaderUniformDataType.Vec3);
         }
 

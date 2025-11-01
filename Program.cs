@@ -6,6 +6,7 @@ using static Raylib_cs.Raylib;
 using System.Drawing;
 using Engine_Scenestates;
 using Engine_Logics;
+using Engine_Logics.Sub.PlayerCon;
 using Engine_Render;
 using System.Security.Cryptography.X509Certificates;
 using Engine_Resource;
@@ -38,8 +39,8 @@ namespace RDN
             SetTargetFPS(60);
                 while (!WindowShouldClose())
                 {
-                    Game.UpdatePlayerLogic();
-                    Rlgl.EnableDepthTest();
+                    ControlCorrespondant.UpdatePlayerLogic();
+		    Rlgl.EnableDepthTest();
                     Shadercl.ShaderUpdateRuntimePrePBR();    
                     Render.Rend_Unified();
                 }
