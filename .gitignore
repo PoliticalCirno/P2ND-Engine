@@ -483,3 +483,21 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 /bin/Debug
+obj/Debug/net9.0/apphost.exe
+obj/Debug/net9.0/RDN.AssemblyInfo.cs
+obj/Debug/net9.0/RDN.AssemblyInfoInputs.cache
+obj/Debug/net9.0/RDN.assets.cache
+obj/Debug/net9.0/RDN.csproj.AssemblyReference.cache
+obj/Debug/net9.0/RDN.csproj.CoreCompileInputs.cache
+obj/Debug/net9.0/RDN.csproj.FileListAbsolute.txt
+obj/Debug/net9.0/RDN.dll
+obj/Debug/net9.0/RDN.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net9.0/RDN.genruntimeconfig.cache
+obj/Debug/net9.0/RDN.pdb
+obj/Debug/net9.0/RDN.sourcelink.json
+obj/Debug/net9.0/ref/RDN.dll
+obj/Debug/net9.0/refint/RDN.dll
+obj/project.assets.json
+obj/project.nuget.cache
+obj/RDN.csproj.nuget.dgspec.json
+obj/RDN.csproj.nuget.g.props
