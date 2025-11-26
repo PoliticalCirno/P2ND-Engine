@@ -36,7 +36,7 @@ namespace RDN
             SetConfigFlags(Raylib_cs.ConfigFlags.Msaa4xHint);
             InitWindow(screenWidth, screenHeight, "P2ND");
             Scenestate.States.SwitcScene(4);
-            SetTargetFPS(60);
+            SetTargetFPS(14000);
                 while (!WindowShouldClose())
                 {
                     ControlCorrespondant.UpdatePlayerLogic();

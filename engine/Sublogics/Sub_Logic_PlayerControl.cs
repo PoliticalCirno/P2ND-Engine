@@ -37,7 +37,7 @@ namespace Engine_Logics.Sub.PlayerCon
             var right = Vector3.Cross(camfps.Up, normtarg);
             normtarg.Y = 0;
             camfps.Position = Vector3.Subtract(camfps.Position, Vector3.Normalize(right) * leftplusplus);
-            camfps.Position = Vector3.Subtract(camfps.Position, (Vector3.Normalize(normtarg) * slowplusplus));
+            camfps.Position = Vector3.Subtract(camfps.Position, ((Vector3.Normalize(normtarg) * slowplusplus * GetFrameTime())));
 
         }
 
@@ -100,18 +100,18 @@ namespace Engine_Logics.Sub.PlayerCon
         {
                         if (IsKeyDown(KeyboardKey.W))
             {
-                if (playerspeed < 4.0f * GetFrameTime())
+                if (playerspeed < 8.0f)
                 {
-                    playerspeed += 2.0f * GetFrameTime();
+                    playerspeed += 2.0f;
                 }
 
             }
 
             if (IsKeyDown(KeyboardKey.S))
             {
-                if (playerspeed > -4.0f * GetFrameTime())
+                if (playerspeed > -8.0f)
                 {
-                    playerspeed -= 2.0f * GetFrameTime();
+                    playerspeed -= 2.0f;
                 }
 
             }
@@ -120,12 +120,12 @@ namespace Engine_Logics.Sub.PlayerCon
             {
                 if (playerspeed > 0.00f)
                 {
-                    playerspeed -= 0.5f * GetFrameTime();
+                    playerspeed -= 0.5f;
                 }
 
                 if (playerspeed < 0.00f)
                 {
-                    playerspeed += 0.5f * GetFrameTime();
+                    playerspeed += 0.5f;
                 }
 
                 if (playerspeed < 0.01f && playerspeed > -0.01f)
