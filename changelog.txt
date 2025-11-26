@@ -21,3 +21,8 @@ UPDATE 250723:
 >PBR fully works. Finally.
 --------------
 [Comment]: SWEET LIBERTY MY RAM!!!!
+UPDATE 251126:
+--------------
+>Movement adheres to deltatime.
+--------------
+[Comment]: I CAN HIT ABOUT 5000 FPS HOLY MOLY
