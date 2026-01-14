@@ -6,7 +6,7 @@ using static Raylib_cs.Raylib;
 using System.Drawing;
 using Engine_Scenestates;
 using Engine_Logics;
-using Engine_Logics.Sub.PlayerCon;
+using Engine_Logics.Sub.PlayerCon.FirstPerson;
 using Engine_Render;
 using System.Security.Cryptography.X509Certificates;
 using Engine_Resource;
@@ -36,7 +36,7 @@ namespace RDN
             SetConfigFlags(Raylib_cs.ConfigFlags.Msaa4xHint);
             InitWindow(screenWidth, screenHeight, "P2ND");
             Scenestate.States.SwitcScene(4);
-            SetTargetFPS(14000);
+            SetTargetFPS(120);
                 while (!WindowShouldClose())
                 {
                     ControlCorrespondant.UpdatePlayerLogic();

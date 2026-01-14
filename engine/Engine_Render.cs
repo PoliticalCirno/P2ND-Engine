@@ -1,12 +1,6 @@
-using System.Numerics;
-using System;
-using System.Linq;
-using System.Text;
 using static Raylib_cs.Raylib;
-using System.Drawing;
 using Game_Objects;
-using Engine_Logics;
-using Engine_Logics.Sub.PlayerCon;
+using Engine_Logics.Sub.PlayerCon.FirstPerson;
 using Engine_Scenestates;
 using Raylib_cs;
 using Engine_Resource;
@@ -33,7 +27,7 @@ namespace Engine_Render
                 }
                 for (int i = 0; i <= Scenestate.prop.Count - 1; i++)
                 {
-                    Engine_Resource.Shadercl.ShaderUpdateRuntimeDuringPBR();
+                    Shadercl.ShaderUpdateRuntimeDuringPBR();
                     DrawModel(PropRend[i].Mdl, PropRend[i].Position, PropRend[i].Size, Raylib_cs.Color.White);
                 }
 
@@ -47,7 +41,7 @@ namespace Engine_Render
                 BeginMode3D(ControlCorrespondant.camfps);
                 RenderBrush();
                 //DrawCube(Scenestate.ligt[0].Position, 1, 1, 1, Raylib_cs.Color.White);
-                //DrawGrid(20, 1.0f);
+                DrawGrid(20, 1.0f);
                 EndMode3D();
             }
             
@@ -57,13 +51,13 @@ namespace Engine_Render
         {
             public static void Render_FpsCounter()
             {
-                DrawText($"Current fps: {GetFPS().ToString()}", 10, 10, 80, Raylib_cs.Color.White);
+                DrawText($"Current fps: {GetFPS()}", 10, 10, 80, Raylib_cs.Color.White);
             }
         }
 
         public static void Rend_Unified()
         {
-            UpdateCamera(ref ControlCorrespondant.camfps, Raylib_cs.CameraMode.Custom);
+            UpdateCamera(ref ControlCorrespondant.camfps, CameraMode.Custom);
             BeginDrawing();
             BeginBlendMode(BlendMode.Alpha);//TODO: figure out why the hell transparency keeps clipping everything behind it.
             ClearBackground(Raylib_cs.Color.White);
@@ -89,5 +83,4 @@ namespace Engine_Render
                 SetShaderValue(shad, lige.intensityLoc, lige.Intensity, ShaderUniformDataType.Float);
         }
     }
-
 }

@@ -6,7 +6,7 @@ using static Raylib_cs.Raylib;
 using System.Drawing;
 using Game_Objects;
 using Engine_Logics;
-using Engine_Logics.Sub.PlayerCon;
+using Engine_Logics.Sub.PlayerCon.FirstPerson;
 using Engine_Resource;
 using Raylib_cs;
 
@@ -67,6 +67,7 @@ namespace Engine_Scenestates
                 modl.Add(new Mdl(LoadModel("resources/models/test/test_mdl.glb"), 0x000001, 0x000000));
                 modl.Add(new Mdl(LoadModel("resources/models/test/test_scene_part1.glb"), 0x000002, 0x000000, LoadTexture("resources/models/test/diffuse.png"), LoadTexture("resources/models/test/normal.png"), Shaders.Mat_PBR_Metallic));
                 modl.Add(new Mdl(LoadModel("resources/models/test/test_scene_part2.glb"), 0x000003, 0x000000, LoadTexture("resources/models/test/demotex/conc.jpg"), LoadTexture("resources/models/test/demotex/concnorm.jpg"), LoadTexture("resources/models/test/demotex/concmra.png"),Shaders.Mat_PBR_Metallic));
+                modl.Add(new Mdl(LoadModel("resources/models/test/test_stress.glb"), 0x000001, 0x000000));
             }
         
         }

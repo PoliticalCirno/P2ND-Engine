@@ -23,7 +23,7 @@ namespace Engine_Logics
         {
             for (int i = 0; i <= Scenestate.prop.Count - 1; i++)
             {
-                Scenestate.prop[i].Position = Vector3.Lerp(Scenestate.prop[i].Position, Engine_Logics.Sub.PlayerCon.ControlCorrespondant.camfps.Position, 1.0f * GetFrameTime());
+                Scenestate.prop[i].Position = Vector3.Lerp(Scenestate.prop[i].Position, Engine_Logics.Sub.PlayerCon.FirstPerson.ControlCorrespondant.camfps.Position, 1.0f * GetFrameTime());
             }
         }
     }
