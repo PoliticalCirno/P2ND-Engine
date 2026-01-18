@@ -32,7 +32,7 @@ namespace RDN
             //--------------------------------------------------------------------------------------
             const int screenWidth = 2320;
             const int screenHeight = 1380;
-            Environment.SetEnvironmentVariable("CUDA_VISIBLE_DEVICES", "0");
+	    GpuDetection.RunDetection();
             SetConfigFlags(Raylib_cs.ConfigFlags.Msaa4xHint);
             InitWindow(screenWidth, screenHeight, "P2ND");
             Scenestate.States.SwitcScene(4);
