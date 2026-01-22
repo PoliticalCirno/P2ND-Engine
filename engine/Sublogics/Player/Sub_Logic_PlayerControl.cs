@@ -42,7 +42,8 @@ namespace Engine_Logics.Sub.PlayerCon.FirstPerson
             //camfps.Position = Vector3.Subtract(camfps.Position, Vector3.Normalize(right) * leftplusplus  * GetFrameTime());
             //camfps.Position = Vector3.Subtract(camfps.Position, ((Vector3.Normalize(normtarg) * slowplusplus * GetFrameTime())));
             camfps.Position = Vector3.Lerp(camfps.Position,Vector3.Subtract(camfps.Position, Vector3.Normalize(right) * leftplusplus), 1.0f * GetFrameTime());
-            camfps.Position = Vector3.Lerp(camfps.Position, Vector3.Subtract(camfps.Position, ((Vector3.Normalize(normtarg) * slowplusplus))), 1.0f * GetFrameTime());
+            camfps.Position = Vector3.Lerp(camfps.Position, Vector3.Subtract(camfps.Position, Vector3.Normalize(normtarg) * slowplusplus), 1.0f * GetFrameTime());
+            //Console.WriteLine("current pos: " + camfps.Position);
 
 
         }

@@ -26,7 +26,7 @@ namespace Game_Objects
 
     public enum Light_types
     {
-        Directorional = 0,
+        Directorional = 0, //Maybe we should rename it to the SUN hehe
         Point = 1,
         Spot = 2
     }

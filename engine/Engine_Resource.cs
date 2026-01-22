@@ -158,6 +158,26 @@ namespace Engine_Resource
             this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Metalness].Texture = mra;
         }
 
+        public unsafe Mdl(Model mdl, int objId, int itemId, Texture2D albe, Texture2D nm, Texture2D mra, Shaders shd, int redo) //Temporary PBR loading override just to test a basic model.
+        {
+            this.mdl = mdl;
+            ObjId = objId;
+            ItemId = itemId;
+            SetTextureFilter(albe, TextureFilter.Bilinear);
+            SetTextureFilter(nm, TextureFilter.Bilinear);
+            SetTextureFilter(mra, TextureFilter.Bilinear);
+            this.mdl.Materials[1].Shader = Shadercl.Mat_PBR;
+            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Albedo].Color = Raylib_cs.Color.White;
+            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Metalness].Value = 0.00f;
+            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Roughness].Value = 100.0f;
+            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Occlusion].Value = 1.00f;
+            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Emission].Color = Color.Red;
+
+            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Albedo].Texture = albe;
+            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Metalness].Texture = mra;
+        }
+
+
         public unsafe Mdl(Model mdl, int objId, int itemId, Texture2D[] albe, Texture2D[] nm, Texture2D[] mrao, Shader shd, Materials mata) //For no-LOD PBR models, for cutscene props or ones i can't bother to make lods.
         {
             this.mdl = mdl;

@@ -117,32 +117,43 @@ vec3 ComputePBR()
 
     for (int i = 0; i < numOfLights; i++)
     {
-        vec3 L = normalize(lights[i].position - fragPosition);      // Compute light vector
-        vec3 H = normalize(V + L);                                  // Compute halfway bisecting vector
-        float dist = length(lights[i].position - fragPosition);     // Compute distance to light
-        float attenuation = 1.0/(dist*dist*0.23);                   // Compute attenuation
-        vec3 radiance = lights[i].color.rgb*lights[i].intensity*attenuation; // Compute input radiance, light energy comming in
+        if (lights[i].enabled == 0)
+            continue;
 
-        // Cook-Torrance BRDF distribution function
-        float nDotV = max(dot(N,V), 0.0000001);
-        float nDotL = max(dot(N,L), 0.0000001);
-        float hDotV = max(dot(H,V), 0.0);
-        float nDotH = max(dot(N,H), 0.0);
-        float D = GgxDistribution(nDotH, roughness);    // Larger the more micro-facets aligned to H
-        float G = GeomSmith(nDotV, nDotL, roughness);   // Smaller the more micro-facets shadow
-        vec3 F = SchlickFresnel(hDotV, baseRefl);       // Fresnel proportion of specular reflectance
+        vec3 L;
+        float attenuation = 1.0;
 
-        vec3 spec = (D*G*F)/(4.0*nDotV*nDotL);
-        
-        // Difuse and spec light can't be above 1.0
-        // kD = 1.0 - kS  diffuse component is equal 1.0 - spec comonent
-        vec3 kD = vec3(1.0) - F;
-        
-        // Mult kD by the inverse of metallnes, only non-metals should have diffuse light
-        kD *= 1.0 - metallic;
-        lightAccum += ((kD*albedo.rgb/PI + spec)*radiance*nDotL)*lights[i].enabled; // Angle of light has impact on result
+        if (lights[i].type == LIGHT_DIRECTIONAL)
+        {
+            L = -normalize(lights[i].target - lights[i].position); 
+            // or: normalize(lights[i].position - lights[i].target);
+            attenuation = 1.0; // no falloff
+        }
+        else
+        {
+            L = normalize(lights[i].position - fragPosition);
+            float dist = length(lights[i].position - fragPosition);
+        }
+
+        vec3 H = normalize(V + L);
+        vec3 radiance = lights[i].color.rgb * lights[i].intensity * attenuation;
+
+        // === Cook–Torrance ===
+        float nDotV = max(dot(N, V), 0.0000001);
+        float nDotL = max(dot(N, L), 0.0000001);
+        float hDotV = max(dot(H, V), 0.0);
+        float nDotH = max(dot(N, H), 0.0);
+
+        float D = GgxDistribution(nDotH, roughness);
+        float G = GeomSmith(nDotV, nDotL, roughness);
+        vec3  F = SchlickFresnel(hDotV, baseRefl);
+
+        vec3 spec = (D * G * F) / (4.0 * nDotV * nDotL);
+
+        vec3 kD = (vec3(1.0) - F) * (1.0 - metallic);
+
+        lightAccum += (kD * albedo.rgb / PI + spec) * radiance * nDotL;
     }
-    
     vec3 ambientFinal = (ambientColor + albedo)*ambient*0.5;
     
     return ambientFinal + lightAccum*ao + emissive;
