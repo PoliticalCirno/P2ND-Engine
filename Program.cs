@@ -1,21 +1,18 @@
-﻿using System.Numerics;
-using System;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics;
 using static Raylib_cs.Raylib;
-using System.Drawing;
 using Engine_Scenestates;
-using Engine_Logics;
-using Engine_Logics.Sub.PlayerCon.FirstPerson;
-using Engine_Render;
-using System.Security.Cryptography.X509Certificates;
-using Engine_Resource;
+using Engine.Render;
+using Engine.Resource;
 using Raylib_cs;
+using Engine.Logics.Sub.PlayerCon.FirstPerson;
+using Engine.Render.Optimization.Culling;
 
 /****************************************
 P2Engine
 
-Part of a project being made by CSoft With Codename:
+Changed team name from CSoft to WFIO
+
+Part of a project being made by WFIO With Codename:
 P2D Radiant.
 
 CURRENT UPDATE: "Cavelier"
@@ -30,19 +27,26 @@ namespace RDN
         {
             // Initialization
             //--------------------------------------------------------------------------------------
+           
+
             const int screenWidth = 2320;
             const int screenHeight = 1380;
-	    GpuDetection.RunDetection();
+	        GpuDetection.RunDetection();
             SetConfigFlags(Raylib_cs.ConfigFlags.Msaa4xHint);
             InitWindow(screenWidth, screenHeight, "P2ND");
             Scenestate.States.SwitcScene(4);
             SetTargetFPS(120);
                 while (!WindowShouldClose())
                 {
+                    Process currentProcess = Process.GetCurrentProcess();
                     ControlCorrespondant.UpdatePlayerLogic();
-		    Rlgl.EnableDepthTest();
+		            Rlgl.EnableDepthTest();
                     Shadercl.ShaderUpdateRuntimePrePBR();    
-                    Render.Rend_Unified();
+                    Renders.Rend_Unified();
+                    long privateMemoryBytes = currentProcess.PrivateMemorySize64;
+                    double privateMemoryMB = privateMemoryBytes / 1024.0 / 1024.0;
+                    Console.WriteLine($"Current RAM usage: {privateMemoryMB:F2} MB");
+                    Engine.Logics.Dev.Variables.memory = privateMemoryMB;
                 }
             CloseWindow();
 

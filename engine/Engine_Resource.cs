@@ -1,8 +1,9 @@
 using System.Numerics;
-using Game_Objects;
+using Engine.Game.Objects;
+using Engine.Logics.Sub.PlayerCon.FirstPerson;
 using Raylib_cs;
 using static Raylib_cs.Raylib;
-namespace Engine_Resource
+namespace Engine.Resource
 {
     public enum Shaders //ah fuck this existed? well shit, I should remove this next update
     {
@@ -40,6 +41,7 @@ namespace Engine_Resource
         public static Shader Mat_PBR;//Physically based rendering shader. bit overkill.
         public static Shader Mat_STD;//Used to serve a purpose.
         public static Shader Mat_FBR;//Faux based rendering for shading
+        public static Shader Mat_CEL;//CEL SHADING WOOHOOOOOOO!!! :DDD
 
         public static int emissiveIntensityLoc;
         public static int emissiveColorLoc;
@@ -70,7 +72,7 @@ namespace Engine_Resource
 
             emissiveIntensityLoc = GetShaderLocation(Mat_PBR, "emissivePower");
             emissiveColorLoc = GetShaderLocation(Mat_PBR, "emissiveColor");
-            textureTilingLoc = GetShaderLocation(Mat_PBR, "tiling"); //apparently I didn't set the default value as .5 by .5
+            textureTilingLoc = GetShaderLocation(Mat_PBR, "tiling"); //apparently I didn't set the default value as .5 by .5, See 91.
 
             SetShaderValue(Mat_PBR, GetShaderLocation(Mat_PBR, "useTexAlbedo"), &usage, ShaderUniformDataType.Int);
             SetShaderValue(Mat_PBR, GetShaderLocation(Mat_PBR, "useTexNormal"), &usage, ShaderUniformDataType.Int);
@@ -81,7 +83,7 @@ namespace Engine_Resource
         public static unsafe void ShaderUpdateRuntimePrePBR()
         {
             //I forgot what this does // I forgot too ngl
-            var Shd_campos = Engine_Logics.Sub.PlayerCon.FirstPerson.ControlCorrespondant.camfps.Position;
+            var Shd_campos = ControlCorrespondant.camfps.Position; 
             SetShaderValue(Mat_PBR, Mat_PBR.Locs[(int)ShaderLocationIndex.VectorView], Shd_campos, ShaderUniformDataType.Vec3);
         }
 
@@ -197,6 +199,8 @@ namespace Engine_Resource
                 this.mdl.Materials[i].Maps[(int)MaterialMapIndex.Albedo].Texture = albe[i];
                 this.mdl.Materials[i].Maps[(int)MaterialMapIndex.Normal].Texture = nm[i];
                 this.mdl.Materials[i].Maps[(int)MaterialMapIndex.Metalness].Texture = mrao[i];
+
+
             }
         }
 

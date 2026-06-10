@@ -2,8 +2,9 @@ using System.Numerics;
 using static Raylib_cs.Raylib;
 using Engine_Scenestates;
 using Raylib_cs;
+using System.Diagnostics;
 
-namespace Engine_Logics.Sub.PlayerCon.FirstPerson
+namespace Engine.Logics.Sub.PlayerCon.FirstPerson
 {
     public class PlayerBody
     {
@@ -172,6 +173,8 @@ namespace Engine_Logics.Sub.PlayerCon.FirstPerson
             ForCon();
             //Console.WriteLine(playerspeed);
             //Console.WriteLine(playerspeedside);
+
+            Render.Optimization.Culling.Simple.Debug(camfps, new Vector3(4, 5, 1));
         }
     }
 }

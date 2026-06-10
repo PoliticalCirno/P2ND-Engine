@@ -5,10 +5,10 @@ using System.Text;
 using static Raylib_cs.Raylib;
 using System.Drawing;
 using Engine_Scenestates;
-using Game_Objects;
+using Engine.Game.Objects;
 using Raylib_cs;
 
-namespace Engine_Logics
+namespace Engine.Logics
 {
     public class Menu
     {
@@ -23,7 +23,7 @@ namespace Engine_Logics
         {
             for (int i = 0; i <= Scenestate.prop.Count - 1; i++)
             {
-                Scenestate.prop[i].Position = Vector3.Lerp(Scenestate.prop[i].Position, Engine_Logics.Sub.PlayerCon.FirstPerson.ControlCorrespondant.camfps.Position, 1.0f * GetFrameTime());
+                Scenestate.prop[i].Position = Vector3.Lerp(Scenestate.prop[i].Position, Engine.Logics.Sub.PlayerCon.FirstPerson.ControlCorrespondant.camfps.Position, 1.0f * GetFrameTime());
             }
         }
     }

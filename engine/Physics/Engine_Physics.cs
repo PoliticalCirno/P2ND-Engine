@@ -7,7 +7,7 @@ using BepuUtilities.Memory;
 using System.Numerics;
 
 
-namespace Game_Physics
+namespace Engine.Physics
 {
     class ValPhysics
     {

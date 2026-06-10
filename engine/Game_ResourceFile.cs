@@ -1,8 +1,8 @@
 using System.Text.Json;
-using Engine_Resource;
+using Engine.Resource;
 using Engine_Scenestates;
 using static Raylib_cs.Raylib;
-using Game_Objects;
+using Engine.Game.Objects;
 using System.Numerics;
 using Raylib_cs;
 
@@ -30,7 +30,7 @@ namespace ResourceFile
 
     public class LoadQueueResourceMdl
     {
-        public required string MdlQ { get; set; }
+        public string MdlQ { get; set; }
         // Realistically, I don't think any 1 model will have more than 3 materials at any given time.
         // Infact most would probably use an separate segmented meshes to come together, for any multi-material mdls.
         // I could do this in an array, and not this messy 3 part variable but who else will judge me but Voided himself <3
@@ -42,7 +42,12 @@ namespace ResourceFile
         public string MdlLod2 { get; set; }
         public int Objectid { get; set; }
         public int Itemid { get; set; }
-        public List<QueueMaterial> Materials = new List<QueueMaterial>();
+        public List<QueueMaterial> Materials { get; set; } = new List<QueueMaterial>(); // TODO!!! FIX!!!!! 
+                                                                                        // My dumbass thought embedding materials on per-model basis was a good thing
+                                                                                        // IT IS NOT.
+                                                                                        // MATERIAL FILES SHOULD BE REUSABLE PER-MESH. 
+                                                                                        // WILL FIX SOON
+                                                                                        //Expected fix: Mdl reliant on referecing pre-existing material files.
         public LoadQueueResourceMdl(string MdlQ, string MdlLod, string MdlLod2, int Objectid, int Itemid, string MdlMaterial1, string MdlMaterial2, string MdlMaterial3)
         {
             this.MdlQ = MdlQ;
@@ -97,10 +102,11 @@ namespace ResourceFile
 
         private static void LoadSubroutine()
         {
+            //Thinking about renaming the extension to .
             string cacheDir = Directory.GetCurrentDirectory() + @"\resources\req" + $@"\m_cache_part_{CurrentLoad}.fwwvch"; //fuck wrong with val?!
             string mapDir = Directory.GetCurrentDirectory() + @"\resources\map" + $@"\map_sect_{CurrentLoad}.fwwvmp";
             string colDir = Directory.GetCurrentDirectory() + @"\resources\map" + $@"\col_info_{CurrentLoad}.fwwvcl";
-            //string matDir = Directory.GetCurrentDirectory() + @"\resources\req" + $@"\mat_cache_part_{CurrentLoad}.fwwvmt"; Embedding the material INTO the model seems more favorable
+            string matDir = Directory.GetCurrentDirectory() + @"\resources\req" + $@"\mat_cache_part_{CurrentLoad}.fwwvmt";  // Embedding the material INTO the model seems more favorable
             string loaded = File.ReadAllText(cacheDir);                                                                      //Time saving wise, but it seems inefficient for any models reusing a material.
             string loadedmp = File.ReadAllText(mapDir);                                                                      //idrc so ehh.
             MdlQueue.Clear();

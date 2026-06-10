@@ -1,13 +1,13 @@
 using static Raylib_cs.Raylib;
-using Game_Objects;
-using Engine_Logics.Sub.PlayerCon.FirstPerson;
+using Engine.Game.Objects;
+using Engine.Logics.Sub.PlayerCon.FirstPerson;
 using Engine_Scenestates;
 using Raylib_cs;
-using Engine_Resource;
+using Engine.Resource;
 
-namespace Engine_Render
+namespace Engine.Render
 {
-    public class Render
+    public class Renders
     {
         private class Rend_2D
         {
@@ -23,7 +23,7 @@ namespace Engine_Render
                 var PropRend = Scenestate.prop;
                 for (int i = 0; i <= Scenestate.brsh.Count - 1; i++)
                 {
-                    DrawCube(brush[i].brushPos, brush[i].brushScale.X, brush[i].brushScale.Z, brush[i].brushScale.Y, Raylib_cs.Color.Black);
+                    //DrawCube(brush[i].brushPos, brush[i].brushScale.X, brush[i].brushScale.Z, brush[i].brushScale.Y, Raylib_cs.Color.Black);
                 }
                 for (int i = 0; i <= Scenestate.prop.Count - 1; i++)
                 {
@@ -40,7 +40,12 @@ namespace Engine_Render
                 //Console.WriteLine(Scenestate.ligt[0].Position);
                 BeginMode3D(ControlCorrespondant.camfps);
                 RenderBrush();
-                //DrawCube(Scenestate.ligt[0].Position, 1, 1, 1, Raylib_cs.Color.White);
+                if(Engine.Logics.Dev.Variables.targetObjectDp > 2)
+                {
+                    DrawCube(new System.Numerics.Vector3(4, 5, 1) , 1, 1, 1, Raylib_cs.Color.Red);
+                }
+
+                    DrawCube(new System.Numerics.Vector3(20.5f, 1.0f, 5.0f) , 1, 1, 1, Raylib_cs.Color.Red);
                 DrawGrid(20, 1.0f);
                 EndMode3D();
             }
@@ -51,7 +56,13 @@ namespace Engine_Render
         {
             public static void Render_FpsCounter()
             {
-                DrawText($"Current fps: {GetFPS()}", 10, 10, 80, Raylib_cs.Color.White);
+                var mdp = Engine.Logics.Dev.Variables.targetObjectDp;
+                DrawText($"Current fps: {GetFPS()}", 10, 10, 80, Raylib_cs.Color.DarkBlue);
+                DrawText($"Dp: {mdp}", 10, 80, 50, Raylib_cs.Color.DarkBlue);
+                DrawText($"Mem: {Engine.Logics.Dev.Variables.memory:F2}MB", 10, 120, 50, Raylib_cs.Color.DarkBlue);
+
+
+
             }
         }
 
@@ -69,7 +80,7 @@ namespace Engine_Render
 
     public class Lighting
     {
-        public static unsafe void UpdateLight(Shader shad, GameObjects.Lights lige)
+        public static void UpdateLight(Shader shad, GameObjects.Lights lige)
         {
 
                 SetShaderValue(shad, lige.enabledLoc, lige.Enabled, ShaderUniformDataType.Int);

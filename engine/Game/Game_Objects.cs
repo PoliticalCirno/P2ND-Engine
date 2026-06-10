@@ -12,7 +12,7 @@ Was thinking entity based system.
 list might get a bit longer since I need to add npc entities.
 --------------------------------
 **************************/
-namespace Game_Objects
+namespace Engine.Game.Objects
 {
     public enum Prop_types
     {
