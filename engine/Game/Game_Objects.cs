@@ -108,7 +108,7 @@ namespace Engine.Game.Objects
                 targetLoc = GetShaderLocation(shd, "lights[" + lightCount + "].target");
                 colorLoc = GetShaderLocation(shd, "lights[" + lightCount + "].color");
                 intensityLoc = GetShaderLocation(shd, "lights[" + lightCount + "].intensity");
-                System.Console.WriteLine($"||LIGHT PASS {lightCount}............ " + positionLoc + " Singular Light pass. Point ray-trace.");
+                System.Console.WriteLine($"||LIGHT PASS {lightCount}............ " + positionLoc + ".");
                 lightCount++;
                 
             }

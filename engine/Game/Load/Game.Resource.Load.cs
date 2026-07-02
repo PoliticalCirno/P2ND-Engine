@@ -6,18 +6,19 @@ using Engine.Game.Objects;
 using System.Numerics;
 using Raylib_cs;
 
-namespace ResourceFile
+namespace Game.Resource.Load.Assets
 {
 
     //IM GONNA CRY || UPDATE: I might not cry.
-    public class QueueMaterial
+    public class MDLMaterial
     {
         public string MaterialName { get; set; }
         public string Shader { get; set; } //MAT_PBR, MAT_FBR, Etc etc...
         public string Albedo { get; set; }
         public string Normal { get; set; }
         public string Mrao { get; set; }
-        public QueueMaterial(string MaterialName, string Shader, string Albedo, string Normal, string Mrao)
+        public float MetalnessIntensity { get; set; }
+        public MDLMaterial(string MaterialName, string Shader, string Albedo, string Normal, string Mrao)
         {
             this.MaterialName = MaterialName;
             this.Shader = Shader;
@@ -28,7 +29,7 @@ namespace ResourceFile
 
     }
 
-    public class LoadQueueResourceMdl
+    public class LoadMdl
     {
         public string MdlQ { get; set; }
         // Realistically, I don't think any 1 model will have more than 3 materials at any given time.
@@ -42,23 +43,8 @@ namespace ResourceFile
         public string MdlLod2 { get; set; }
         public int Objectid { get; set; }
         public int Itemid { get; set; }
-        public List<QueueMaterial> Materials { get; set; } = new List<QueueMaterial>(); // TODO!!! FIX!!!!! 
-                                                                                        // My dumbass thought embedding materials on per-model basis was a good thing
-                                                                                        // IT IS NOT.
-                                                                                        // MATERIAL FILES SHOULD BE REUSABLE PER-MESH. 
-                                                                                        // WILL FIX SOON
-                                                                                        //Expected fix: Mdl reliant on referecing pre-existing material files.
-        public LoadQueueResourceMdl(string MdlQ, string MdlLod, string MdlLod2, int Objectid, int Itemid, string MdlMaterial1, string MdlMaterial2, string MdlMaterial3)
-        {
-            this.MdlQ = MdlQ;
-            this.MdlLod = MdlLod;
-            this.MdlLod2 = MdlLod2;
-            this.Objectid = Objectid;
-            this.Itemid = Itemid;
-            this.MdlMaterial1 = MdlMaterial1;
-            this.MdlMaterial2 = MdlMaterial2;
-            this.MdlMaterial3 = MdlMaterial3;
-        }
+        public string[] MaterialName { get; set; }
+
     }
 
     public class LoadQueueMapProp
@@ -87,7 +73,7 @@ namespace ResourceFile
         }
     }
 
-    class LoadingThreads
+   /* class LoadingThreads
     {
         public static int CurrentLoad;
         public static List<LoadQueueResourceMdl> MdlQueue = new();
@@ -140,8 +126,8 @@ namespace ResourceFile
                     }
 
                 }
-            }*/
+            }
 
         }
-    }
+    }*/
 }

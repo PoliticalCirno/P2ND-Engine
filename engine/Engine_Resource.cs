@@ -40,7 +40,7 @@ namespace Engine.Resource
     {
         public static Shader Mat_PBR;//Physically based rendering shader. bit overkill.
         public static Shader Mat_STD;//Used to serve a purpose.
-        public static Shader Mat_FBR;//Faux based rendering for shading
+        public static Shader Mat_FBR;//FULLBRIGHT
         public static Shader Mat_CEL;//CEL SHADING WOOHOOOOOOO!!! :DDD
 
         public static int emissiveIntensityLoc;
@@ -150,7 +150,7 @@ namespace Engine.Resource
             SetTextureFilter(mra, TextureFilter.Bilinear);
             this.mdl.Materials[1].Shader = Shadercl.Mat_PBR;
             this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Albedo].Color = Raylib_cs.Color.White;
-            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Metalness].Value = 0.00f;
+            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Metalness].Value = 0.0f;
             this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Roughness].Value = 100.0f;
             this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Occlusion].Value = 1.00f;
             this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Emission].Color = Color.Red;

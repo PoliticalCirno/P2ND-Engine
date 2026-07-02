@@ -12,11 +12,6 @@ namespace Engine.Render.Optimization.Culling
             var dp = Vector3.Dot(GetCameraForward(&cam), Vector3.Subtract(objPos , cam.Position));
             Engine.Logics.Dev.Variables.targetObjectDp = (float)Math.Round(dp, 3);
             
-            if(dp > 0.1)
-                Console.WriteLine("The Object should be visible");
-            else if(dp < 0.1)
-                Console.WriteLine("The Object should NOT visible");
-
         }
     }
 }

@@ -45,7 +45,7 @@ namespace RDN
                     Renders.Rend_Unified();
                     long privateMemoryBytes = currentProcess.PrivateMemorySize64;
                     double privateMemoryMB = privateMemoryBytes / 1024.0 / 1024.0;
-                    Console.WriteLine($"Current RAM usage: {privateMemoryMB:F2} MB");
+                    //Console.WriteLine($"Current RAM usage: {privateMemoryMB:F2} MB");
                     Engine.Logics.Dev.Variables.memory = privateMemoryMB;
                 }
             CloseWindow();
