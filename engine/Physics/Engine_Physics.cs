@@ -20,7 +20,7 @@ namespace Engine.Physics
         /// </summary>
         public static void InitializeSpace()
         {
-    
+            
         }
     }//Maybe Reuse for wind
 }

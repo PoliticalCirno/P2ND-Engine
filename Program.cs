@@ -48,6 +48,7 @@ namespace RDN
                     //Console.WriteLine($"Current RAM usage: {privateMemoryMB:F2} MB");
                     Engine.Logics.Dev.Variables.memory = privateMemoryMB;
                 }
+            Game.Resource.Load.IO.Assets.LoadMaterials();
             CloseWindow();
 
             return 0;

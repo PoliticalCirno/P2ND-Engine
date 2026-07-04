@@ -7,9 +7,8 @@ using System.Drawing;
 using Raylib_cs;
 /*************************
 Game Objects.
-Initial comment:
-Was thinking entity based system.
-list might get a bit longer since I need to add npc entities.
+
+Will be replaced by ECS
 --------------------------------
 **************************/
 namespace Engine.Game.Objects

@@ -10,21 +10,30 @@ namespace Game.Resource.Load.Assets
 {
 
     //IM GONNA CRY || UPDATE: I might not cry.
-    public class MDLMaterial
+    public class Material
     {
         public string MaterialName { get; set; }
         public string Shader { get; set; } //MAT_PBR, MAT_FBR, Etc etc...
         public string Albedo { get; set; }
         public string Normal { get; set; }
         public string Mrao { get; set; }
+        public float AlbedoIntensity { get; set; }
+        public float RoughnessIntensity { get; set; }
         public float MetalnessIntensity { get; set; }
-        public MDLMaterial(string MaterialName, string Shader, string Albedo, string Normal, string Mrao)
+        public float AmbientIntensity { get; set; }
+        public float EmissionIntensity { get; set; }
+        public Material(string MaterialName, string Shader, string Albedo, string Normal, string Mrao, float AlbedoIntensity, float RoughnessIntensity, float MetalnessIntensity, float AmbientIntensity, float EmissionIntensity)
         {
             this.MaterialName = MaterialName;
             this.Shader = Shader;
             this.Albedo = Albedo;
             this.Normal = Normal;
             this.Mrao = Mrao;
+            this.AlbedoIntensity = AlbedoIntensity;
+            this.RoughnessIntensity = RoughnessIntensity;
+            this.MetalnessIntensity = MetalnessIntensity;
+            this.AmbientIntensity = AmbientIntensity;
+            this.EmissionIntensity = EmissionIntensity;
         }
 
     }

@@ -3,7 +3,7 @@ using Engine.Game.Objects;
 using Engine.Logics.Sub.PlayerCon.FirstPerson;
 using Raylib_cs;
 using static Raylib_cs.Raylib;
-namespace Engine.Resource
+namespace Engine.Resource ///NEXT STEP IS TO COMPLETELY OVERHAUL INTO ECS SYSTEM.
 {
     public enum Shaders //ah fuck this existed? well shit, I should remove this next update
     {
@@ -105,7 +105,8 @@ namespace Engine.Resource
         public int ItemId { get; set; } //Active: 0x000001 and above, non item objects should be relagated to 0x000000 meaning null.
 
         public Shaders shader { get; set; }
-        public List<Materials> matr = new();
+
+        public string[] Materials;
 
         public Mdl(Model mdl, int objId, int itemId)
         {
