@@ -6,19 +6,21 @@ using static Raylib_cs.Raylib;
 using System.Drawing;
 using Engine.Game.Objects;
 using Engine.Resource;
+using Engine.Render.MaterialSystem;
 using Raylib_cs;
 using Engine.Logics.Sub.PlayerCon.FirstPerson;
+using Engine.Game;
 
 
 namespace Engine_Scenestates
 {
-    public class Scenestate
+    class Scenestate
     {
         public static List<Engine.Resource.Mdl> modl = new List<Mdl>();
         public static List<Engine.Game.Objects.GameObjects.Props> prop = new List<GameObjects.Props>();
         public static List<Engine.Game.Objects.GameObjects.Brush> brsh = new List<GameObjects.Brush>();
         public static List<Engine.Game.Objects.GameObjects.Lights> ligt = new List<GameObjects.Lights>();
-        
+        public static List<Entity> entities = new();
 
         private static int state_id = 0; // 0 = splashscreen, 1 = menu, 2 = loading thread, 3 = ingame, 4 = test ingame[WILL DEPRECATE SOON]
         public class States
@@ -64,6 +66,7 @@ namespace Engine_Scenestates
 
             public static void LoadPrereq()
             {
+                //Game.Resource.Load.IO.Assets.LoadMaterials(ref MaterialSystem.mat);
                 //modl.Add(new Mdl(LoadModel("resources/models/test/test_mdl.glb"), 0x000001, 0x000000));
                 //modl.Add(new Mdl(LoadModel("resources/models/test/test_scene_part1.glb"), 0x000002, 0x000000, LoadTexture("resources/models/test/diffuse.png"), LoadTexture("resources/models/test/normal.png"), Shaders.Mat_PBR_Metallic));
                 //modl.Add(new Mdl(LoadModel("resources/models/test/test_scene_part2.glb"), 0x000003, 0x000000, LoadTexture("resources/models/test/demotex/conc.jpg"), LoadTexture("resources/models/test/demotex/concnorm.jpg"), LoadTexture("resources/models/test/demotex/concmra.png"),Shaders.Mat_PBR_Metallic));

@@ -3,15 +3,15 @@ using static Raylib_cs.Raylib;
 using Engine.Game.Objects;
 using System.Numerics;
 using Raylib_cs;
-using Game.Resource.Load;
+using Engine.Game.Resource.Load;
 
 
-namespace Game.Resource.Load.IO
+namespace Engine.Game.Resource.Load.IO
 {
     public class Assets
     {
-        static List<Game.Resource.Load.Assets.Material> mat = new();
-        
+        public static List<Engine.Game.Resource.Load.Assets.Material> mat = new();
+
         public static void LoadMaterials()
         {
                 string readfile = File.ReadAllText(Directory.GetCurrentDirectory() + "/resources/materials/test/MainTexture.p2mat");
@@ -20,7 +20,7 @@ namespace Game.Resource.Load.IO
 
                 mat.AddRange(matload);
 
-                Console.WriteLine(mat[0].MaterialName);
+                Console.WriteLine("0x" + mat[0x000000].MaterialId.ToString("x6"));
         }
         
     }

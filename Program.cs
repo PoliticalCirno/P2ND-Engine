@@ -35,12 +35,12 @@ namespace RDN
             SetConfigFlags(Raylib_cs.ConfigFlags.Msaa4xHint);
             InitWindow(screenWidth, screenHeight, "P2ND");
             Scenestate.States.SwitcScene(4);
+            Rlgl.EnableDepthTest();
             SetTargetFPS(120);
                 while (!WindowShouldClose())
                 {
                     Process currentProcess = Process.GetCurrentProcess();
                     ControlCorrespondant.UpdatePlayerLogic();
-		            Rlgl.EnableDepthTest();
                     Shadercl.ShaderUpdateRuntimePrePBR();    
                     Renders.Rend_Unified();
                     long privateMemoryBytes = currentProcess.PrivateMemorySize64;
@@ -48,7 +48,7 @@ namespace RDN
                     //Console.WriteLine($"Current RAM usage: {privateMemoryMB:F2} MB");
                     Engine.Logics.Dev.Variables.memory = privateMemoryMB;
                 }
-            Game.Resource.Load.IO.Assets.LoadMaterials();
+            Engine.Game.Resource.Load.IO.Assets.LoadMaterials();
             CloseWindow();
 
             return 0;

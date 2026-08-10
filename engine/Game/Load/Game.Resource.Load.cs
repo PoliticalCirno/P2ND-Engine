@@ -6,12 +6,13 @@ using Engine.Game.Objects;
 using System.Numerics;
 using Raylib_cs;
 
-namespace Game.Resource.Load.Assets
+namespace Engine.Game.Resource.Load.Assets
 {
 
     //IM GONNA CRY || UPDATE: I might not cry.
     public class Material
     {
+        public int MaterialId {get; set;}
         public string MaterialName { get; set; }
         public string Shader { get; set; } //MAT_PBR, MAT_FBR, Etc etc...
         public string Albedo { get; set; }
