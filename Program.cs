@@ -34,6 +34,7 @@ namespace RDN
 	        GpuDetection.RunDetection();
             SetConfigFlags(Raylib_cs.ConfigFlags.Msaa4xHint);
             InitWindow(screenWidth, screenHeight, "P2ND");
+            Engine.Game.Resource.Load.IO.Assets.LoadMaterials();
             Scenestate.States.SwitcScene(4);
             Rlgl.EnableDepthTest();
             SetTargetFPS(120);
@@ -48,7 +49,6 @@ namespace RDN
                     //Console.WriteLine($"Current RAM usage: {privateMemoryMB:F2} MB");
                     Engine.Logics.Dev.Variables.memory = privateMemoryMB;
                 }
-            Engine.Game.Resource.Load.IO.Assets.LoadMaterials();
             CloseWindow();
 
             return 0;

@@ -4,6 +4,9 @@ using Engine.Logics.Sub.PlayerCon.FirstPerson;
 using Engine_Scenestates;
 using Raylib_cs;
 using Engine.Resource;
+using Engine.Game;
+using System.Numerics;
+using ComponentSystem;
 
 namespace Engine.Render
 {
@@ -18,19 +21,7 @@ namespace Engine.Render
         {
             public static void RenderBrush()
             {
-                
-                var brush = Scenestate.brsh;
-                var PropRend = Scenestate.prop;
-                for (int i = 0; i <= Scenestate.brsh.Count - 1; i++)
-                {
-                    //DrawCube(brush[i].brushPos, brush[i].brushScale.X, brush[i].brushScale.Z, brush[i].brushScale.Y, Raylib_cs.Color.Black);
-                }
-                for (int i = 0; i <= Scenestate.prop.Count - 1; i++)
-                {
                     Shadercl.ShaderUpdateRuntimeDuringPBR();
-                    DrawModel(PropRend[i].Mdl, PropRend[i].Position, PropRend[i].Size, Raylib_cs.Color.White);
-                }
-
             }
 
             public static void Render_3D()
@@ -40,6 +31,9 @@ namespace Engine.Render
                 //Console.WriteLine(Scenestate.ligt[0].Position);
                 BeginMode3D(ControlCorrespondant.camfps);
                 RenderBrush();
+                //DrawModel(Scenestate.entities[0].GetComponent<Mesh3D>().model, Vector3.Zero, 1, Raylib_cs.Color.White);
+                TransformSystem.Update(GetFrameTime());
+                Mesh3DSystem.Update(GetFrameTime());
                 if(Engine.Logics.Dev.Variables.targetObjectDp > 2)
                 {
                     DrawCube(new System.Numerics.Vector3(4, 5, 1) , 1, 1, 1, Raylib_cs.Color.Red);

@@ -10,6 +10,7 @@ using Engine.Render.MaterialSystem;
 using Raylib_cs;
 using Engine.Logics.Sub.PlayerCon.FirstPerson;
 using Engine.Game;
+using ComponentSystem;
 
 
 namespace Engine_Scenestates
@@ -17,8 +18,6 @@ namespace Engine_Scenestates
     class Scenestate
     {
         public static List<Engine.Resource.Mdl> modl = new List<Mdl>();
-        public static List<Engine.Game.Objects.GameObjects.Props> prop = new List<GameObjects.Props>();
-        public static List<Engine.Game.Objects.GameObjects.Brush> brsh = new List<GameObjects.Brush>();
         public static List<Engine.Game.Objects.GameObjects.Lights> ligt = new List<GameObjects.Lights>();
         public static List<Entity> entities = new();
 
@@ -43,8 +42,6 @@ namespace Engine_Scenestates
 
             public static void LoadAll()
             {
-                prop.Clear();
-                brsh.Clear();
                 Shadercl.InitializeShaderPBR();
                 LoadPrereq();
                 if (state_id == 4)
@@ -57,7 +54,7 @@ namespace Engine_Scenestates
                     //Engine.Game.Objects.GameObjects.Lights.UpdateShaderValues(ligt[0], Shadercl.Mat_PBR);
                     Engine.Game.Objects.GameObjects.Lights.UpdateShaderValues(ligt[2], Shadercl.Mat_PBR);
                     Engine.Game.Objects.GameObjects.Lights.UpdateShaderValues(ligt[1], Shadercl.Mat_PBR);
-                    prop.Add(new GameObjects.Props(modl[0].mdl, 0x000002, Prop_types.Prop_Static, "gag", false, 0x000000, new Vector3(0.0f, 0f, 0.0f), Vector3.Zero, 1.0f));
+                    //prop.Add(new GameObjects.Props(modl[0].mdl, 0x000002, Prop_types.Prop_Static, "gag", false, 0x000000, new Vector3(0.0f, 0f, 0.0f), Vector3.Zero, 1.0f));
                     ControlCorrespondant.SetGameDefault(new Vector3(0.0f, 0.0f, 0.0f));
                     Console.WriteLine("DONE______________________________________________________________!\n");
                     
@@ -66,12 +63,26 @@ namespace Engine_Scenestates
 
             public static void LoadPrereq()
             {
-                //Game.Resource.Load.IO.Assets.LoadMaterials(ref MaterialSystem.mat);
-                //modl.Add(new Mdl(LoadModel("resources/models/test/test_mdl.glb"), 0x000001, 0x000000));
-                //modl.Add(new Mdl(LoadModel("resources/models/test/test_scene_part1.glb"), 0x000002, 0x000000, LoadTexture("resources/models/test/diffuse.png"), LoadTexture("resources/models/test/normal.png"), Shaders.Mat_PBR_Metallic));
-                //modl.Add(new Mdl(LoadModel("resources/models/test/test_scene_part2.glb"), 0x000003, 0x000000, LoadTexture("resources/models/test/demotex/conc.jpg"), LoadTexture("resources/models/test/demotex/concnorm.jpg"), LoadTexture("resources/models/test/demotex/concmra.png"),Shaders.Mat_PBR_Metallic));
-                modl.Add(new Mdl(LoadModel("resources/models/prereq/Def.glb"), 0x000003, 0x000000, LoadTexture("resources/models/prereq/default/DefaultTextureDiffuse.png"), LoadTexture("resources/models/test/demotex/concnorma.jpg"), LoadTexture("resources/models/prereq/default/DefaultTexture.png"),Shaders.Mat_PBR_Metallic));
-                //modl.Add(new Mdl(LoadModel("resources/models/test/test_stress.glb"), 0x000001, 0x000000));
+                entities.Add(new Entity());
+                ComponentSystem.Transform transform = new ComponentSystem.Transform();
+                transform.position = new Vector3(0, 0, 0);
+                transform.scale.X = 1;
+                
+                ComponentSystem.Mesh3D mesh = new Mesh3D();
+                mesh.model = LoadModel("resources/models/prereq/Def.glb");
+                mesh.materialAssigned = mesh.materialAssigned.Append(1).ToArray();
+                mesh.materialAssigned[0] = 0;
+                Console.WriteLine("\n\n\n\n\n\n"+mesh.materialAssigned.Length+"\n\n\n\n\n\n");
+                Console.WriteLine("\n\n\n\n\n\n"+mesh.materialAssigned[0]+"\n\n\n\n\n\n");
+                entities[0].AddComponent(transform);
+                entities[0].AddComponent(mesh);
+                MaterialMemorySystem.checkActiveMaterialInScene();
+
+                mesh = null;
+                transform = null;
+
+                GC.Collect();
+
             }
         
         }

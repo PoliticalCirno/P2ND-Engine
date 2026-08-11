@@ -8,21 +8,24 @@ namespace ComponentSystem
     class Mesh3D : Component
     {
         public Model model;
-        public int[] meshAssigned = {0x000000}; //On second thought, it'd be better if LOD was its own component
-        public int[] meshAssignedInMemory = {0x000000};
-        public int[] materialAssigned = {0x000000};
-        public int[] materialAssignedInMemory = {0x000000};
-
-        public virtual void Update(float gameTime)
-        {
-                Transform t = entity.GetComponent<Transform>();
-                DrawModel(model, t.position, t.scale.X, Raylib_cs.Color.White);
-        }
+    public int[] meshAssigned = Array.Empty<int>();
+    public int[] meshAssignedInMemory = Array.Empty<int>();
+    public int[] materialAssigned = Array.Empty<int>();
+    public int[] materialAssignedInMemory = Array.Empty<int>();
 
         public Mesh3D()
         {
-            Mesh3DSyetem.Register(this);
+            Mesh3DSystem.Register(this);
         }
+
+        
+        public override void Update(float gameTime)
+        {
+                Transform t = entity.GetComponent<Transform>();
+                DrawModel(model, t.position, t.scale.X, Raylib_cs.Color.White);
+                Console.WriteLine($"\n\n\n\n\nI SHOULD BE WORKING \n\n\n\n\n");
+        }
+
 
     }
 

@@ -59,10 +59,7 @@ namespace Engine.Logics.Sub.PlayerCon.FirstPerson
 
         public static void DeleteThisFunc()
         {
-            for (int i = 0; i <= Scenestate.prop.Count - 1; i++)
-            {
-                Scenestate.prop[i].Position = Vector3.Lerp(Scenestate.prop[i].Position, camfps.Position, 1.0f * GetFrameTime());
-            }
+
         }
 
         public static void SideCon()

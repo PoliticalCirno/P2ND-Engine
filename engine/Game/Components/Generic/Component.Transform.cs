@@ -8,6 +8,17 @@ namespace ComponentSystem
         public Vector3 position = Vector3.Zero;
         public Vector3 rotation = Vector3.Zero;
         public Vector3 scale = new Vector3(1, 1, 1);
+
+        public Transform() 
+        {
+            TransformSystem.Register(this);
+        }
+
+        public virtual void Update()
+        {
+            
+        }
+
     }
 
 }

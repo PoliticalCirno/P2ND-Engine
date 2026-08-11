@@ -10,6 +10,8 @@ namespace Engine.Game
         public static void Register(T component)
         {
             components.Add(component);
+            Console.WriteLine($"\n\n\n\n\nINFO: ECS: Registered {typeof(T).Name}. Total count: {components.Count} \n\n\n\n\n");
+        
         }
 
         public static void Update(float gameTime)
@@ -21,6 +23,6 @@ namespace Engine.Game
         }
     }
 
-    class TransformSyetem : ComponentBaseSystem<Transform>{ }
-    class Mesh3DSyetem : ComponentBaseSystem<Mesh3D>{ }
+    class TransformSystem : ComponentBaseSystem<Transform>{ }
+    class Mesh3DSystem : ComponentBaseSystem<ComponentSystem.Mesh3D>{ }
 }

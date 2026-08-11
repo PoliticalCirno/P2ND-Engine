@@ -149,16 +149,16 @@ namespace Engine.Resource ///NEXT STEP IS TO COMPLETELY OVERHAUL INTO ECS SYSTEM
             SetTextureFilter(albe, TextureFilter.Bilinear);
             SetTextureFilter(nm, TextureFilter.Bilinear);
             SetTextureFilter(mra, TextureFilter.Bilinear);
-            this.mdl.Materials[1].Shader = Shadercl.Mat_PBR;
-            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Albedo].Color = Raylib_cs.Color.White;
-            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Metalness].Value = 0.0f;
-            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Roughness].Value = 0.0f;
-            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Occlusion].Value = 0.00f;
-            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Emission].Color = Color.Red;
+           // this.mdl.Materials[1].Shader = Shadercl.Mat_PBR;
+            //this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Albedo].Color = Raylib_cs.Color.White;
+            //this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Metalness].Value = 0.0f;
+            //this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Roughness].Value = 0.0f;
+            //this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Occlusion].Value = 0.00f;
+            //this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Emission].Color = Color.Red;
 
-            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Albedo].Texture = albe;
-            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Normal].Texture = nm;//You are now my 2nd bane of existance.
-            this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Metalness].Texture = mra;
+            //this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Albedo].Texture = albe;
+            //this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Normal].Texture = nm;//You are now my 2nd bane of existance.
+            //this.mdl.Materials[1].Maps[(int)MaterialMapIndex.Metalness].Texture = mra;
         }
 
 
@@ -175,8 +175,8 @@ namespace Engine.Resource ///NEXT STEP IS TO COMPLETELY OVERHAUL INTO ECS SYSTEM
 
                 this.mdl.Materials[i].Shader = shd;
                 this.mdl.Materials[i].Maps[(int)MaterialMapIndex.Albedo].Color = Raylib_cs.Color.White;
-                this.mdl.Materials[i].Maps[(int)MaterialMapIndex.Metalness].Value = mata.metIntensity;
-                this.mdl.Materials[i].Maps[(int)MaterialMapIndex.Roughness].Value = mata.rouIntensity;
+                //this.mdl.Materials[i].Maps[(int)MaterialMapIndex.Metalness].Value = mata.metIntensity;
+                //this.mdl.Materials[i].Maps[(int)MaterialMapIndex.Roughness].Value = mata.rouIntensity;
                 this.mdl.Materials[i].Maps[(int)MaterialMapIndex.Occlusion].Value = mata.aoIntensity;
 
                 this.mdl.Materials[i].Maps[(int)MaterialMapIndex.Albedo].Texture = albe[i];
