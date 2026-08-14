@@ -32,8 +32,10 @@ namespace RDN
             const int screenWidth = 2320;
             const int screenHeight = 1380;
 	        GpuDetection.RunDetection();
-            SetConfigFlags(Raylib_cs.ConfigFlags.Msaa4xHint);
-            InitWindow(screenWidth, screenHeight, "P2ND");
+
+            InitWindow(screenWidth, screenHeight, "P2ND Engine Test");
+            SetConfigFlags(Raylib_cs.ConfigFlags.FullscreenMode);
+            Raylib.ToggleBorderlessWindowed();
             Engine.Game.Resource.Load.IO.Assets.LoadMaterials();
             Scenestate.States.SwitcScene(4);
             Rlgl.EnableDepthTest();

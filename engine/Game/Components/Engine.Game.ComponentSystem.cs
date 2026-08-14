@@ -25,4 +25,5 @@ namespace Engine.Game
 
     class TransformSystem : ComponentBaseSystem<Transform>{ }
     class Mesh3DSystem : ComponentBaseSystem<ComponentSystem.Mesh3D>{ }
+    class Mesh3DTransSystem : ComponentBaseSystem<ComponentSystem.Mesh3DTrans>{ }
 }

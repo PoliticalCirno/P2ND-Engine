@@ -19,13 +19,34 @@ namespace Engine.Render.MaterialSystem
         public float EmissionIntensity;
         public string test;
 
-        public MaterialsQueue(string Alb, string norm, string mra, string shadr, float aInt, float rouInt, float ambInt, string testcheck)
+        public unsafe MaterialsQueue(string Alb, string norm, string mra, string shadr, float aInt, float rouInt, float ambInt, string testcheck)
         {
-            this.albedo = LoadTexture(Alb);
-            this.normal = LoadTexture(norm);
-            this.mrao = LoadTexture(mra);
-        this.shader = Shadercl.Mat_PBR;
+        
+
+            Texture2D albed = LoadTexture(Alb);
+            Texture2D normed = LoadTexture(norm);
+            Texture2D mrted = LoadTexture(mra);
             
+
+            if(shadr == "PBR")
+            {
+                this.shader = Shadercl.Mat_PBR;
+            }
+            GenTextureMipmaps(&albed);
+            GenTextureMipmaps(&normed);
+            GenTextureMipmaps(&mrted);
+            this.albedo = albed;
+            this.normal = normed;
+            this.mrao = mrted;
+
+
+            SetTextureFilter(this.albedo, TextureFilter.Bilinear);
+            SetTextureFilter(this.normal, TextureFilter.Bilinear);
+            SetTextureFilter(this.normal, TextureFilter.Anisotropic8X);
+
+           SetTextureFilter(this.mrao, TextureFilter.Bilinear);
+           SetTextureFilter(this.mrao, TextureFilter.Anisotropic8X);
+
             test = testcheck;
         }
 
@@ -38,9 +59,13 @@ namespace Engine.Render.MaterialSystem
         {
             for(int i = 0; i < Scenestate.entities.Count; i++)
             {
+                if(Scenestate.entities[i].HasComponent<Mesh3DTrans>() == true)
+                continue;
+
                 var materialref = Scenestate.entities[i].GetComponent<Mesh3D>();
                 if(materialref == null || materialref.materialAssigned == null)
                 continue;
+                
 
                 for(int n = 0; n < materialref.materialAssigned.Length; n++)
                 {
@@ -57,12 +82,13 @@ namespace Engine.Render.MaterialSystem
                         materialref.model.Materials[n + 1].Maps[(int)MaterialMapIndex.Albedo].Texture = materials[materialref.materialAssignedInMemory[n]].albedo;
                         materialref.model.Materials[n + 1].Maps[(int)MaterialMapIndex.Normal].Texture = materials[materialref.materialAssignedInMemory[n]].normal;
                         materialref.model.Materials[n + 1].Maps[(int)MaterialMapIndex.Metalness].Texture = materials[materialref.materialAssignedInMemory[n]].mrao;
-                         Console.WriteLine("------------------------------------------RenderSuccess");
-
+                        Console.WriteLine("||INFO MATERIAL: Material Load Success");
+                        continue;
 
                     }
                     else
                     {
+                     Console.WriteLine("||INFO MATERIAL: Material already exists");
                         materialref.model.Materials[n + 1].Shader = materials[materialref.materialAssignedInMemory[n]].shader;
                         materialref.model.Materials[n + 1].Maps[(int)MaterialMapIndex.Albedo].Texture = materials[materialref.materialAssignedInMemory[n]].albedo;
                         materialref.model.Materials[n + 1].Maps[(int)MaterialMapIndex.Normal].Texture = materials[materialref.materialAssignedInMemory[n]].normal;

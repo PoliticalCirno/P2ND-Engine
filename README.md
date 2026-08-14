@@ -1,8 +1,5 @@
 # P2ND-Engine
-A game engine built on top of Raylib.
+A ECS modular game engine made for open world exploration games.
 
-
-## CURRENTLY VERY VERY VERY VERY VERY VERY UNSTABLE AND INCOMPLETE.
-
-
-# I SWEAR THIS IS NOT ABANDONED, IM JUST REALLY BUSY WITH UNI.
+## About
+P2ND-Engine is a raylib based game engine built on core ideas of ECS modularity and fast feature implementation.

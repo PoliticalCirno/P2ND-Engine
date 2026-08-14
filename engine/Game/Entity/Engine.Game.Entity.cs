@@ -25,4 +25,16 @@ class Entity
         }
         return null;
     }
+
+    public bool HasComponent<T>() where T : Component
+    {
+        foreach(Component component in components)
+        {
+            if(component.GetType().Equals(typeof(T)))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

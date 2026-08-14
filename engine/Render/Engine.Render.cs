@@ -31,9 +31,12 @@ namespace Engine.Render
                 //Console.WriteLine(Scenestate.ligt[0].Position);
                 BeginMode3D(ControlCorrespondant.camfps);
                 RenderBrush();
-                //DrawModel(Scenestate.entities[0].GetComponent<Mesh3D>().model, Vector3.Zero, 1, Raylib_cs.Color.White);
+                //DrawModel(Scenestate.entities[0].Getcomponent<Mesh3D>().model, Vector3.Zero, 1, Raylib_cs.Color.White);
                 TransformSystem.Update(GetFrameTime());
                 Mesh3DSystem.Update(GetFrameTime());
+                Rlgl.DisableDepthMask();
+                Mesh3DTransSystem.Update(GetFrameTime());
+                Rlgl.EnableDepthMask();
                 if(Engine.Logics.Dev.Variables.targetObjectDp > 2)
                 {
                     DrawCube(new System.Numerics.Vector3(4, 5, 1) , 1, 1, 1, Raylib_cs.Color.Red);
@@ -53,7 +56,7 @@ namespace Engine.Render
                 var mdp = Engine.Logics.Dev.Variables.targetObjectDp;
                 DrawText($"Current fps: {GetFPS()}", 10, 10, 80, Raylib_cs.Color.DarkBlue);
                 DrawText($"Dp: {mdp}", 10, 80, 50, Raylib_cs.Color.DarkBlue);
-                DrawText($"Mem: {Engine.Logics.Dev.Variables.memory:F2}MB", 10, 120, 50, Raylib_cs.Color.DarkBlue);
+                DrawText($"Mem: {Engine.Logics.Dev.Variables.memory:F2}MB || Screenwidth : {GetScreenWidth()} x {GetScreenHeight()}", 10, 120, 50, Raylib_cs.Color.DarkBlue);
 
 
 
@@ -65,8 +68,9 @@ namespace Engine.Render
             UpdateCamera(ref ControlCorrespondant.camfps, CameraMode.Custom);
             BeginDrawing();
             BeginBlendMode(BlendMode.Alpha);//TODO: figure out why the hell transparency keeps clipping everything behind it.
-            ClearBackground(Raylib_cs.Color.White);
+            ClearBackground(Raylib_cs.Color.Black);
             Rend_3D.Render_3D();
+            EndBlendMode();
             Rend_UI.Render_FpsCounter();
             EndDrawing();
         }
