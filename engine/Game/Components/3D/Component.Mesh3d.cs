@@ -8,8 +8,7 @@ namespace ComponentSystem
     class Mesh3D : Component
     {
     public Model model;
-    public int[] meshAssigned = Array.Empty<int>();
-    public int[] meshAssignedInMemory = Array.Empty<int>();
+    public int[] meshAssigned { get; set; }
     public int[] materialAssigned = Array.Empty<int>();
     public int[] materialAssignedInMemory = Array.Empty<int>();
     
@@ -25,7 +24,6 @@ namespace ComponentSystem
             {            
                 Transform t = entity.GetComponent<Transform>();
                 DrawModel(model, t.position, t.scale.X, Raylib_cs.Color.White);
-                //Console.WriteLine($"\n\n\n\n\nI SHOULD BE WORKING \n\n\n\n\n");
             }
         }
 

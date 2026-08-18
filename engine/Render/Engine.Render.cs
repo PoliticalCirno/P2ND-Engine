@@ -37,14 +37,7 @@ namespace Engine.Render
                 Rlgl.DisableDepthMask();
                 Mesh3DTransSystem.Update(GetFrameTime());
                 Rlgl.EnableDepthMask();
-                if(Engine.Logics.Dev.Variables.targetObjectDp > 2)
-                {
-                    DrawCube(new System.Numerics.Vector3(4, 5, 1) , 1, 1, 1, Raylib_cs.Color.Red);
-                }
-
-                    DrawCube(new System.Numerics.Vector3(20.5f, 1.0f, 5.0f) , 1, 1, 1, Raylib_cs.Color.Red);
-                DrawGrid(20, 1.0f);
-                EndMode3D();
+                EndMode3D();  
             }
             
         }
@@ -53,13 +46,14 @@ namespace Engine.Render
         {
             public static void Render_FpsCounter()
             {
-                var mdp = Engine.Logics.Dev.Variables.targetObjectDp;
                 DrawText($"Current fps: {GetFPS()}", 10, 10, 80, Raylib_cs.Color.DarkBlue);
-                DrawText($"Dp: {mdp}", 10, 80, 50, Raylib_cs.Color.DarkBlue);
-                DrawText($"Mem: {Engine.Logics.Dev.Variables.memory:F2}MB || Screenwidth : {GetScreenWidth()} x {GetScreenHeight()}", 10, 120, 50, Raylib_cs.Color.DarkBlue);
-
-
-
+                DrawText($"Mem: {Engine.Logics.Dev.Variables.memory:F2}MB Actual: {Engine.Logics.Dev.Variables.memoryActual:F2}MB || Screenwidth : {GetScreenWidth()} x {GetScreenHeight()}", 10, 120, 50, Raylib_cs.Color.DarkBlue);
+                //BeginBlendMode(BlendMode.Multiplied);
+                //DrawRectangle(0, 0, 2900, 2900, new Raylib_cs.Color(00.957f, 0.851f, 0.20f, 0.07f));
+                //BeginBlendMode(BlendMode.Additive);
+                //DrawRectangle(0, 0, 2900, 2900, new Raylib_cs.Color(0.255f, 0.380f, 0.184f, 0.1f));
+                //EndBlendMode();
+                //EndBlendMode();
             }
         }
 
@@ -67,12 +61,17 @@ namespace Engine.Render
         {
             UpdateCamera(ref ControlCorrespondant.camfps, CameraMode.Custom);
             BeginDrawing();
+
             BeginBlendMode(BlendMode.Alpha);//TODO: figure out why the hell transparency keeps clipping everything behind it.
-            ClearBackground(Raylib_cs.Color.Black);
+            ClearBackground(Raylib_cs.Color.White);
+            BeginShaderMode(Scenestate.yella);
             Rend_3D.Render_3D();
             EndBlendMode();
+            EndShaderMode();
             Rend_UI.Render_FpsCounter();
             EndDrawing();
+        
+
         }
     }
 

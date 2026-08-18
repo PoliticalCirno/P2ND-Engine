@@ -18,6 +18,8 @@ namespace Engine_Scenestates
     class Scenestate
     {
         public static List<Engine.Game.Objects.GameObjects.Lights> ligt = new List<GameObjects.Lights>();
+        public static Shader yella;
+        public static RenderTexture2D target;
         public static List<Entity> entities = new();
 
         private static int state_id = 0; // 0 = splashscreen, 1 = menu, 2 = loading thread, 3 = ingame, 4 = test ingame[WILL DEPRECATE SOON]
@@ -45,9 +47,9 @@ namespace Engine_Scenestates
                 LoadPrereq();
                 if (state_id == 4)
                 { 
-                    ligt.Add(new GameObjects.Lights(new Vector3(100f, 0, 0f), new Vector3(0f, 0.0f, 0.0f), false, Light_types.Point, Raylib_cs.Color.Blue, 0.0f, Shadercl.Mat_PBR));  
+                    ligt.Add(new GameObjects.Lights(new Vector3(100f, 0, 0f), new Vector3(0f, 0.0f, 0.0f), false, Light_types.Point, Raylib_cs.Color.White, 0.0f, Shadercl.Mat_PBR));  
                     //new Vector3(5.5f, -1.0f, 5.0f)
-                    ligt.Add(new GameObjects.Lights(new Vector3(1f, 2f, 1f), new Vector3(10.5f, 0.0f, 8.0f), true, Light_types.Directorional, Raylib_cs.Color.SkyBlue, 5.0f, Shadercl.Mat_PBR));
+                    ligt.Add(new GameObjects.Lights(new Vector3(1f, 2f, 1f), new Vector3(10.5f, 0.0f, 8.0f), true, Light_types.Directorional, Raylib_cs.Color.White, 5.0f, Shadercl.Mat_PBR));
                     //ligt.Add(new GameObjects.Lights(new Vector3(1f, 0f, 1f), new Vector3(10.5f, 1.0f, 4.0f), true, Light_types.Point, Raylib_cs.Color.RayWhite, 0.0f, Shadercl.Mat_PBR));  at_PBR));  
                     ligt.Add(new GameObjects.Lights(new Vector3(0f, 5f, -10f), new Vector3(-10f, 0f, 8.0f), true, Light_types.Directorional, Raylib_cs.Color.Violet, 9.0f, Shadercl.Mat_PBR));  
                     //Engine.Game.Objects.GameObjects.Lights.UpdateShaderValues(ligt[0], Shadercl.Mat_PBR);
@@ -62,7 +64,9 @@ namespace Engine_Scenestates
 
             public static void LoadPrereq()
             {
-                Model moddy = LoadModel("resources/models/prereq/Def.glb");
+                target = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
+                yella = LoadShader(null, "resources/shader/screen/yellowfilter.fs");
+                Model moddy = LoadModel("resources/mesh/prereq/Def.glb");
                 entities.Add(new Entity());
                 ComponentSystem.Transform transform = new ComponentSystem.Transform();
                 transform.position = new Vector3(0, 0, 0);
@@ -85,7 +89,7 @@ namespace Engine_Scenestates
                 ComponentSystem.Mesh3D mesha = new Mesh3D();
                 transforma.position = new Vector3(-10, 30, 50);
                 transforma.scale.X = 6;
-                mesha.model = LoadModel("resources/models/test/LightShaft/LightPierce.glb");
+                mesha.model = LoadModel("resources/mesh/test/LightShaft/LightPierce.glb");
                // mesh.materialAssigned = mesh.materialAssigned.Append(1).ToArray();
                // mesh.materialAssigned[0] = 0;
                 //Console.WriteLine("\n\n\n\n\n\nENTCOUNT"+entities.Count+"\n\n\n\n\n\n");
@@ -101,7 +105,7 @@ namespace Engine_Scenestates
                 ComponentSystem.Mesh3D meshs = new Mesh3D();
                 transforms.position = new Vector3(-10, 30, 50);
                 transforms.scale.X = 6;
-                meshs.model = LoadModel("resources/models/test/LightShaft/LightShaft.glb");
+                meshs.model = LoadModel("resources/mesh/test/LightShaft/LightShaft.glb");
                // mesh.materialAssigned = mesh.materialAssigned.Append(1).ToArray();
                // mesh.materialAssigned[0] = 0;
                 //Console.WriteLine("\n\n\n\n\n\nENTCOUNT"+entities.Count+"\n\n\n\n\n\n");
@@ -117,10 +121,8 @@ namespace Engine_Scenestates
                 ComponentSystem.Mesh3D mesher = new Mesh3D();
                 transformeis.position = new Vector3(-10, 30, 50);
                 transformeis.scale.X = 6;
-                mesher.model = LoadModel("resources/models/test/LightShaft/LightShaftVert.glb");      
+                mesher.model = LoadModel("resources/mesh/test/LightShaft/LightShaftVert.glb");      
                 //mesher.materialAssignedInMemory[0] = 0;
-                Console.WriteLine("\n\n\n\n\n\n"+mesh.materialAssigned.Length+"\n\n\n\n\n\n");
-                Console.WriteLine("\n\n\n\n\n\n"+mesh.materialAssigned[0]+"\n\n\n\n\n\n");
                 entities[3].AddComponent(transformeis);
                 entities[3].AddComponent(mesher);
                 entities[3].AddComponent(m3tra);

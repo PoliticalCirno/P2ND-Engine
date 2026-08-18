@@ -23,6 +23,8 @@ namespace Engine.Game.Resource.Load.Assets
         public float MetalnessIntensity { get; set; }
         public float AmbientIntensity { get; set; }
         public float EmissionIntensity { get; set; }
+        public bool isLoadedInMemory = false;
+        public int memoryLocation = 0;
         public Material(string MaterialName, string Shader, string Albedo, string Normal, string Mrao, float AlbedoIntensity, float RoughnessIntensity, float MetalnessIntensity, float AmbientIntensity, float EmissionIntensity)
         {
             this.MaterialName = MaterialName;
@@ -39,22 +41,13 @@ namespace Engine.Game.Resource.Load.Assets
 
     }
 
-    public class LoadMdl
+    public class Models
     {
         public string MdlQ { get; set; }
-        // Realistically, I don't think any 1 model will have more than 3 materials at any given time.
-        // Infact most would probably use an separate segmented meshes to come together, for any multi-material mdls.
-        // I could do this in an array, and not this messy 3 part variable but who else will judge me but Voided himself <3
-        // TODO, fix later
-        public string MdlMaterial1 { get; set; }
-        public string MdlMaterial2 { get; set; }
-        public string MdlMaterial3 { get; set; }
-        public string MdlLod { get; set; }
-        public string MdlLod2 { get; set; }
-        public int Objectid { get; set; }
-        public int Itemid { get; set; }
-        public string[] MaterialName { get; set; }
-
+        public string ModelName { get; set; }
+        public bool isLoaded = false;
+        public int locationInMem;
+        
     }
 
     public class LoadQueueMapProp
@@ -83,7 +76,8 @@ namespace Engine.Game.Resource.Load.Assets
         }
     }
 
-   /* class LoadingThreads
+    // [DEPRECATED CODE] ALL THE CODE BELOW ARE NOW REDUNDANT!
+    /* class LoadingThreads
     {
         public static int CurrentLoad;
         public static List<LoadQueueResourceMdl> MdlQueue = new();

@@ -41,6 +41,7 @@ namespace Engine.Render.MaterialSystem
 
 
             SetTextureFilter(this.albedo, TextureFilter.Bilinear);
+            
             SetTextureFilter(this.normal, TextureFilter.Bilinear);
             SetTextureFilter(this.normal, TextureFilter.Anisotropic8X);
 

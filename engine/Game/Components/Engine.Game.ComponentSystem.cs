@@ -10,7 +10,7 @@ namespace Engine.Game
         public static void Register(T component)
         {
             components.Add(component);
-            Console.WriteLine($"\n\n\n\n\nINFO: ECS: Registered {typeof(T).Name}. Total count: {components.Count} \n\n\n\n\n");
+            Console.WriteLine($"||INFO: ECS: Registered {typeof(T).Name}. Total count: {components.Count}");
         
         }
 

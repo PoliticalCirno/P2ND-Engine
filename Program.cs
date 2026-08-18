@@ -34,8 +34,9 @@ namespace RDN
 	        GpuDetection.RunDetection();
 
             InitWindow(screenWidth, screenHeight, "P2ND Engine Test");
-            SetConfigFlags(Raylib_cs.ConfigFlags.FullscreenMode);
-            Raylib.ToggleBorderlessWindowed();
+            //SetConfigFlags(Raylib_cs.ConfigFlags.FullscreenMode);
+            //Raylib.ToggleBorderlessWindowed();
+            Engine.Game.Resource.Load.IO.Assets.LoadModels();
             Engine.Game.Resource.Load.IO.Assets.LoadMaterials();
             Scenestate.States.SwitcScene(4);
             Rlgl.EnableDepthTest();
@@ -48,8 +49,11 @@ namespace RDN
                     Renders.Rend_Unified();
                     long privateMemoryBytes = currentProcess.PrivateMemorySize64;
                     double privateMemoryMB = privateMemoryBytes / 1024.0 / 1024.0;
+                    long actualMemoryBytes = currentProcess.WorkingSet64;
+                    double aMemB = actualMemoryBytes / 1024.0 / 1024.0;
                     //Console.WriteLine($"Current RAM usage: {privateMemoryMB:F2} MB");
                     Engine.Logics.Dev.Variables.memory = privateMemoryMB;
+                    Engine.Logics.Dev.Variables.memoryActual = aMemB;
                 }
             CloseWindow();
 

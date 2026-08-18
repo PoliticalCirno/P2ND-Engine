@@ -10,7 +10,7 @@ namespace Engine.Render.Optimization.Culling
         public static unsafe void Debug(Camera3D cam, Vector3 objPos)
         {
             var dp = Vector3.Dot(GetCameraForward(&cam), Vector3.Subtract(objPos , cam.Position));
-            Engine.Logics.Dev.Variables.targetObjectDp = (float)Math.Round(dp, 3);
+            //Engine.Logics.Dev.Variables.targetObjectDp = (float)Math.Round(dp, 3);
             
         }
     }
