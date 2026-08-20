@@ -5,7 +5,7 @@ using Raylib_cs;
 using Engine.Resource;
 namespace Engine.Render.MaterialSystem
 {
-    class MaterialsQueue
+    public class MaterialsQueue
     {
         public static int preloadedCheck = 0x000000;
         public int ActiveMaterials = 0;
@@ -50,10 +50,9 @@ namespace Engine.Render.MaterialSystem
 
             test = testcheck;
         }
-
     }
 
-    class MaterialMemorySystem
+    public class MaterialMemorySystem
     {
         public static List<MaterialsQueue> materials = new();
         public static unsafe void checkActiveMaterialInScene()
@@ -67,6 +66,8 @@ namespace Engine.Render.MaterialSystem
                 if(materialref == null || materialref.materialAssigned == null)
                 continue;
                 
+                if(materialref.matAllLoaded == true)
+                continue;
 
                 for(int n = 0; n < materialref.materialAssigned.Length; n++)
                 {
@@ -84,6 +85,7 @@ namespace Engine.Render.MaterialSystem
                         materialref.model.Materials[n + 1].Maps[(int)MaterialMapIndex.Normal].Texture = materials[materialref.materialAssignedInMemory[n]].normal;
                         materialref.model.Materials[n + 1].Maps[(int)MaterialMapIndex.Metalness].Texture = materials[materialref.materialAssignedInMemory[n]].mrao;
                         Console.WriteLine("||INFO MATERIAL: Material Load Success");
+                        materialref.matAllLoaded = true;
                         continue;
 
                     }
@@ -94,10 +96,12 @@ namespace Engine.Render.MaterialSystem
                         materialref.model.Materials[n + 1].Maps[(int)MaterialMapIndex.Albedo].Texture = materials[materialref.materialAssignedInMemory[n]].albedo;
                         materialref.model.Materials[n + 1].Maps[(int)MaterialMapIndex.Normal].Texture = materials[materialref.materialAssignedInMemory[n]].normal;
                         materialref.model.Materials[n + 1].Maps[(int)MaterialMapIndex.Metalness].Texture = materials[materialref.materialAssignedInMemory[n]].mrao;
-            
+                        materialref.matAllLoaded = true;
+                        
                     }
                 }
             }
         }        
     }
+     
 }

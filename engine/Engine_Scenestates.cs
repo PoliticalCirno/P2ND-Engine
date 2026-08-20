@@ -11,6 +11,7 @@ using Raylib_cs;
 using Engine.Logics.Sub.PlayerCon.FirstPerson;
 using Engine.Game;
 using ComponentSystem;
+using Engine.Render.MeshSystem;
 
 
 namespace Engine_Scenestates
@@ -66,69 +67,22 @@ namespace Engine_Scenestates
             {
                 target = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
                 yella = LoadShader(null, "resources/shader/screen/yellowfilter.fs");
-                Model moddy = LoadModel("resources/mesh/prereq/Def.glb");
                 entities.Add(new Entity());
                 ComponentSystem.Transform transform = new ComponentSystem.Transform();
                 transform.position = new Vector3(0, 0, 0);
                 transform.scale.X = 1;
                 
                 ComponentSystem.Mesh3D mesh = new Mesh3D();
-                mesh.model = moddy;
+                mesh.meshAssigned = 0;
                 mesh.materialAssigned = mesh.materialAssigned.Append(1).ToArray();
                 mesh.materialAssigned[0] = 0;
                 entities[0].AddComponent(transform);
                 entities[0].AddComponent(mesh);
+                MeshMemorySystem.CheckActiveMeshesInScene();
                 MaterialMemorySystem.checkActiveMaterialInScene();
                 
+                                    
 
-                entities.Add(new Entity());
-                ComponentSystem.Mesh3DTrans m3t = new();
-                ComponentSystem.Transform transforma = new ComponentSystem.Transform();
-                ComponentSystem.Mesh3D mesha = new Mesh3D();
-                transforma.position = new Vector3(-10, 30, 50);
-                transforma.scale.X = 6;
-                mesha.model = LoadModel("resources/mesh/test/LightShaft/LightPierce.glb");
-               // mesh.materialAssigned = mesh.materialAssigned.Append(1).ToArray();
-               // mesh.materialAssigned[0] = 0;
-                //Console.WriteLine("\n\n\n\n\n\nENTCOUNT"+entities.Count+"\n\n\n\n\n\n");
-                //Console.WriteLine("\n\n\n\n\n\n"+mesh.materialAssigned[0]+"\n\n\n\n\n\n");
-                entities[1].AddComponent(transforma);
-                entities[1].AddComponent(mesha);
-                entities[1].AddComponent(m3t);
-
-
-                entities.Add(new Entity());
-                ComponentSystem.Mesh3DTrans m3ta = new();
-                ComponentSystem.Transform transforms = new ComponentSystem.Transform();
-                ComponentSystem.Mesh3D meshs = new Mesh3D();
-                transforms.position = new Vector3(-10, 30, 50);
-                transforms.scale.X = 6;
-                meshs.model = LoadModel("resources/mesh/test/LightShaft/LightShaft.glb");
-               // mesh.materialAssigned = mesh.materialAssigned.Append(1).ToArray();
-               // mesh.materialAssigned[0] = 0;
-                //Console.WriteLine("\n\n\n\n\n\nENTCOUNT"+entities.Count+"\n\n\n\n\n\n");
-                //Console.WriteLine("\n\n\n\n\n\n"+mesh.materialAssigned[0]+"\n\n\n\n\n\n");
-                entities[2].AddComponent(transforms);
-                entities[2].AddComponent(meshs);
-                entities[2].AddComponent(m3ta);
-
-                entities.Add(new Entity());
-                
-                ComponentSystem.Mesh3DTrans m3tra = new();
-                ComponentSystem.Transform transformeis = new ComponentSystem.Transform();
-                ComponentSystem.Mesh3D mesher = new Mesh3D();
-                transformeis.position = new Vector3(-10, 30, 50);
-                transformeis.scale.X = 6;
-                mesher.model = LoadModel("resources/mesh/test/LightShaft/LightShaftVert.glb");      
-                //mesher.materialAssignedInMemory[0] = 0;
-                entities[3].AddComponent(transformeis);
-                entities[3].AddComponent(mesher);
-                entities[3].AddComponent(m3tra);
-                               
-                mesh = null;
-                transform = null;
-                mesha = null;
-                meshs = null;
 
                // GC.Collect();
 

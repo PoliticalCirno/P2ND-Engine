@@ -7,10 +7,12 @@ namespace ComponentSystem
 {
     class Mesh3D : Component
     {
-    public Model model;
-    public int[] meshAssigned { get; set; }
-    public int[] materialAssigned = Array.Empty<int>();
-    public int[] materialAssignedInMemory = Array.Empty<int>();
+        public Model model;
+        public int meshAssigned { get; set; }
+        public int[] materialAssigned = Array.Empty<int>();
+        public int[] materialAssignedInMemory = Array.Empty<int>();
+        public bool matAllLoaded = false;
+        public bool mdlLoaded = false;
     
         public Mesh3D()
         {
