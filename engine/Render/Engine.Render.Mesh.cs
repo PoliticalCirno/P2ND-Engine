@@ -6,6 +6,8 @@ using Engine.Resource;
 
 namespace Engine.Render.MeshSystem
 {
-    
-    
+    class MeshSystemP
+    {
+        
+    }   
 }

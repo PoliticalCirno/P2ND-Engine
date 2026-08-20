@@ -72,12 +72,12 @@ namespace Engine.Render.MaterialSystem
                 {
                     if(materialref.materialAssignedInMemory.Length == 0)
                     {
-                        Console.WriteLine("\n\n\n\n\n\n\n" + $"CurrentVal: {materialref.materialAssigned[n]}\n\n\n\n\n\n");
+                        Console.WriteLine("\n" + $"|| INFO: MATERIAL: CurrentVal: {materialref.materialAssigned[n]}\n\n\n\n\n\n");
                         var Loadqueue = Engine.Game.Resource.Load.IO.Assets.mat[materialref.materialAssigned[n]];
                         materials.AddRange(new MaterialsQueue(Loadqueue.Albedo, Loadqueue.Normal, Loadqueue.Mrao, Loadqueue.Shader, Loadqueue.AlbedoIntensity, Loadqueue.RoughnessIntensity, Loadqueue.AmbientIntensity, "checking"));
                         materialref.materialAssignedInMemory = materialref.materialAssignedInMemory.Append(1).ToArray();                        
                         materialref.materialAssignedInMemory[n] = materials.Count - 1;
-                        Console.WriteLine("\n\n\n\n\n\n\n" + $"CurrentCount: {materialref.model.MaterialCount} {n + 1} {materials.Count} {materialref.materialAssignedInMemory.Length} {materials[0].test}\n\n\n\n\n\n");
+                        Console.WriteLine("\n\n" + $"|| INFO: MATERIAL: CurrentCount: {materialref.model.MaterialCount} {n + 1} {materials.Count} {materialref.materialAssignedInMemory.Length} {materials[0].test}\n\n\n\n\n\n");
                         materialref.model.Materials[n + 1].Shader = materials[0].shader;
                         materialref.model.Materials[n + 1].Maps[(int)MaterialMapIndex.Albedo].Color = Raylib_cs.Color.White;
                         materialref.model.Materials[n + 1].Maps[(int)MaterialMapIndex.Albedo].Texture = materials[materialref.materialAssignedInMemory[n]].albedo;

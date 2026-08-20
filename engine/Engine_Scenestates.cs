@@ -76,8 +76,6 @@ namespace Engine_Scenestates
                 mesh.model = moddy;
                 mesh.materialAssigned = mesh.materialAssigned.Append(1).ToArray();
                 mesh.materialAssigned[0] = 0;
-                Console.WriteLine("\n\n\n\n\n\n"+mesh.materialAssigned.Length+"\n\n\n\n\n\n");
-                Console.WriteLine("\n\n\n\n\n\n"+mesh.materialAssigned[0]+"\n\n\n\n\n\n");
                 entities[0].AddComponent(transform);
                 entities[0].AddComponent(mesh);
                 MaterialMemorySystem.checkActiveMaterialInScene();
