@@ -69,7 +69,7 @@ namespace Engine_Scenestates
                 yella = LoadShader(null, "resources/shader/screen/yellowfilter.fs");
                 entities.Add(new Entity());
                 ComponentSystem.Transform transform = new ComponentSystem.Transform();
-                transform.position = new Vector3(0, 0, 0);
+                transform.position = new Vector3(0, -10, 0);
                 transform.scale.X = 1;
                 
                 ComponentSystem.Mesh3D mesh = new Mesh3D();
@@ -78,6 +78,7 @@ namespace Engine_Scenestates
                 mesh.materialAssigned[0] = 0;
                 entities[0].AddComponent(transform);
                 entities[0].AddComponent(mesh);
+                entities[0].Id = entities.Count - 1;
                 MeshMemorySystem.CheckActiveMeshesInScene();
                 MaterialMemorySystem.checkActiveMaterialInScene();
                 

@@ -501,3 +501,4 @@ obj/project.assets.json
 obj/project.nuget.cache
 obj/RDN.csproj.nuget.dgspec.json
 obj/RDN.csproj.nuget.g.props
+/resources/tex_lib/Tex_Sky/Cubemap

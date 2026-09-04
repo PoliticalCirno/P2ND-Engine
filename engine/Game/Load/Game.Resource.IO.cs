@@ -12,6 +12,7 @@ namespace Engine.Game.Resource.Load.IO
     {
         public static List<Engine.Game.Resource.Load.Assets.Material> mat = new();
         public static List<Engine.Game.Resource.Load.Assets.Models> models = new();
+        public static List<Engine.Game.Resource.Load.Assets.MapCluster> mapCl = new();
 
         public static void LoadMaterials()
         {
@@ -41,6 +42,19 @@ namespace Engine.Game.Resource.Load.IO
                 models.AddRange(modload);
             } 
             Console.WriteLine("\n|| INFO: MODELS: All addresses loaded successfully");
+        }
+
+        public static void LoadMapClusters()//NOTE, Mapclusters are 200x200 
+        {
+            int dirFileCount = Directory.EnumerateFiles(Directory.GetCurrentDirectory() + "/resources/mapclusters/", "*.p2mapcl").Count();
+            for(int i = 1; i < dirFileCount; i++)
+            {
+                string readfile = File.ReadAllText(Directory.GetCurrentDirectory() + $"/resources/models/{i.ToString("x6")}.p2matcl");
+                Console.WriteLine("\n|| MAPCLUSTER: " + readfile);
+                var mapload = JsonSerializer.Deserialize<Game.Resource.Load.Assets.MapCluster>(readfile);
+
+                mapCl.AddRange(mapload);
+            }
         }
         
     }

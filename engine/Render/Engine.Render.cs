@@ -30,7 +30,10 @@ namespace Engine.Render
                 Lighting.UpdateLight(Shadercl.Mat_PBR, Scenestate.ligt[1]);
                 //Console.WriteLine(Scenestate.ligt[0].Position);
                 BeginMode3D(ControlCorrespondant.camfps);
+                DrawGrid(40, 5);
                 RenderBrush();
+                DrawCube(new Vector3(0, 0, 100), 1, 1, 1, Raylib_cs.Color.Blue);
+                DrawCube(new Vector3(0, 0, -100), 1, 1, 1, Raylib_cs.Color.Blue);
                 //DrawModel(Scenestate.entities[0].Getcomponent<Mesh3D>().model, Vector3.Zero, 1, Raylib_cs.Color.White);
                 TransformSystem.Update(GetFrameTime());
                 Mesh3DSystem.Update(GetFrameTime());
@@ -63,7 +66,7 @@ namespace Engine.Render
             BeginDrawing();
 
             BeginBlendMode(BlendMode.Alpha);//TODO: figure out why the hell transparency keeps clipping everything behind it.
-            ClearBackground(Raylib_cs.Color.White);
+            ClearBackground(Raylib_cs.Color.Black);
             BeginShaderMode(Scenestate.yella);
             Rend_3D.Render_3D();
             EndBlendMode();

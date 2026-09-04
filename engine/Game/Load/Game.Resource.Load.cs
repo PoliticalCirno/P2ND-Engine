@@ -50,6 +50,21 @@ namespace Engine.Game.Resource.Load.Assets
         
     }
 
+
+    internal class EntityInMap
+    {
+        string[] Components { get; set; }
+    }
+
+    public class MapCluster //0x000000 will be pre-requisites., 0x000001 - 0x00000F will be in vertical order, Subsequently 0x000011 - 0x00001F will move 1 space horizontal and repeat vertical order until it becomes 0xFFFFFF.
+    {
+        public int mapName { get; set; }
+        List<EntityInMap> entityInMaps {get; set;}
+        public int XLeftAdjecent { get; set; } 
+        public int XRightAdjecent { get; set; } 
+        public int YUpAdjecent { get; set; } 
+        public int YDownAdjecent { get; set; } 
+    }
     public class LoadQueueMapProp
     {
         public int MdlId { get; set; }
